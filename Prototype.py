@@ -111,28 +111,30 @@ def get_previous_chat():
 @app.route('/create_new_user', methods=['POST'])
 def create_new_user():
     try:
-        # Retrieve JSON data from the request body
+        # Retrieve JSON data from the body
         data = request.json
-        print(data)  # Print the entire dictionary for debugging
-
-        userEmail = data.get('emailAddress')  # Safely fetch email
-        userPassword = data.get('password')  # Safely fetch password
-
-        print(userEmail + " " + userPassword)
-
+        
+        userEmail = data.get('emailAddress')
+        userPassword = data.get('password')  
+        
         # Database connection
         conn = connect_to_database()
         cursor = conn.cursor()
 
-        # Use parameterized query to prevent SQL injection
+        # Use parameterised query for SQL injectio
         query = "SELECT useremail, userpassword FROM usertable WHERE useremail = %s"
         cursor.execute(query, (userEmail,))  # Provide parameters as a tuple
 
         # Fetch one result - result will be a tuple
         result = cursor.fetchone()
-
+        cursor.close()
+        conn.close()
+    
+        #check the result is valid
         if result:
+            #unpack the tuple - assign names
             email, password = result 
+            #ensure inputed email and password match the stored version
             if email == userEmail and password == userPassword:
                 response_message = "Sign in was successful"
             else:
@@ -147,13 +149,8 @@ def create_new_user():
         # Print the exception for details
         print("Error:", str(e))
         return jsonify({"error": "An error occurred", "details": str(e)}), 500
+        
 
-    finally:
-        # Ensure resources are closed properly
-        if 'cursor' in locals():
-            cursor.close()
-        if 'conn' in locals():
-            conn.close()
     
  
     
