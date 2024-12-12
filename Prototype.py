@@ -108,8 +108,8 @@ def get_previous_chat():
         return jsonify({"error": str(e)}), 500
     
 
-@app.route('/create_new_user', methods=['POST'])
-def create_new_user():
+@app.route('/sign_in_user', methods=['POST'])
+def sign_in_user():
     try:
         # Retrieve JSON data from the body
         data = request.json
@@ -130,6 +130,7 @@ def create_new_user():
         cursor.close()
         conn.close()
     
+        
         #check the result is valid
         if result:
             #unpack the tuple - assign names
