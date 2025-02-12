@@ -1,0 +1,9 @@
+/config/
+/database/
+.env
+/endpoints/
+/tools/
+/groupchat/
+gen.py
+private_key.pem
+public_key.pem
