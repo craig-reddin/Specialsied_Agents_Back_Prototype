@@ -1,0 +1,7 @@
+/config/
+/database/
+.env
+/endpoints/
+/tools/
+/groupchat/
+gen.py

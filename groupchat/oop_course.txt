@@ -1,0 +1,105 @@
+
+6-Week Object-Oriented Programming Course
+
+Week 1: Introduction to Object-Oriented Programming
+- Concepts: Classes, Objects, and Methods
+- Example:
+    class Dog:
+        def __init__(self, name, breed):
+            self.name = name
+            self.breed = breed
+
+        def bark(self):
+            return f"{self.name} says woof!"
+
+    my_dog = Dog("Buddy", "Golden Retriever")
+    print(my_dog.bark())
+
+Week 2: Encapsulation
+- Concepts: Private and Public Access Modifiers
+- Example:
+    class BankAccount:
+        def __init__(self, owner, balance=0):
+            self.owner = owner
+            self.__balance = balance
+
+        def deposit(self, amount):
+            self.__balance += amount
+
+        def withdraw(self, amount):
+            if amount <= self.__balance:
+                self.__balance -= amount
+            else:
+                print("Insufficient funds")
+
+        def get_balance(self):
+            return self.__balance
+
+    account = BankAccount("Alice", 100)
+    account.deposit(50)
+    print(account.get_balance())
+
+Week 3: Inheritance
+- Concepts: Base and Derived Classes
+- Example:
+    class Animal:
+        def speak(self):
+            return "Animal sound"
+
+    class Cat(Animal):
+        def speak(self):
+            return "Meow"
+
+    my_cat = Cat()
+    print(my_cat.speak())
+
+Week 4: Polymorphism
+- Concepts: Method Overriding and Overloading
+- Example:
+    class Shape:
+        def area(self):
+            pass
+
+    class Circle(Shape):
+        def __init__(self, radius):
+            self.radius = radius
+
+        def area(self):
+            return 3.14 * self.radius * self.radius
+
+    circle = Circle(5)
+    print(circle.area())
+
+Week 5: Abstraction
+- Concepts: Abstract Classes and Interfaces
+- Example:
+    from abc import ABC, abstractmethod
+
+    class Vehicle(ABC):
+        @abstractmethod
+        def start_engine(self):
+            pass
+
+    class Car(Vehicle):
+        def start_engine(self):
+            return "Car engine started"
+
+    my_car = Car()
+    print(my_car.start_engine())
+
+Week 6: Advanced OOP Concepts
+- Concepts: Composition, Aggregation, and Design Patterns
+- Example:
+    class Engine:
+        def start(self):
+            return "Engine started"
+
+    class Car:
+        def __init__(self):
+            self.engine = Engine()
+
+        def start(self):
+            return self.engine.start()
+
+    my_car = Car()
+    print(my_car.start())
